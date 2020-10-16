@@ -121,9 +121,12 @@ class Bullet
   {
     x += tmpX + 50;
     y = tmpY;
-    noStroke();
-    fill(#FF1493); //pink color
-    ellipse(x, y, 10, 10);
+    if (state == 0)
+    {
+     noStroke();
+     fill(#FF1493); //pink color
+     ellipse(x, y, 10, 10);
+    }
     if(x < width)
     {
       x += 1;
@@ -133,6 +136,7 @@ class Bullet
       x = tmpX; 
     }
   }
+  
   float getX()
   {
    return x; 
@@ -154,6 +158,7 @@ class Zombie
   float speedX;
   float speedY;
   Zombie[] others;
+  int count = 0 ;
   
   Zombie(float xpos ,float ypos, float size,int idin,Zombie[] oin)
   {
@@ -198,7 +203,15 @@ class Zombie
   {
     if( bullet.getX() <= this.right()  && bullet.getX() >= this.left() && bullet.getY() <= this.buttom() && bullet.getY() >= this.top() )
     {
-      state = 1;
+      if (this.count < 3)
+      {
+       this.count +=1 ;
+       s = s*10;
+      }
+      if(this.count == 3);
+      {
+        state = 1;
+      }
     }
   }
   
